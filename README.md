@@ -2,6 +2,19 @@
 
 ## Objective
 The goal of this project is to train a reinforcement learning agent to navigate an emergency room environment and reach the medicine cabinet while avoiding obstacles.
+## Instructions for Setting up of project
+## Prerequisites
+Python 3.8+
+## Clone the repository:
+git clone 
+## Create a virtual environment:
+
+-python -m venv myenv
+-myenv\Scripts\activate
+
+## install the necessary packages:
+pip install gym numpy tensorflow 
+pip install keras-rl2
 
 ## Files
 - `emergency_room_env.py`: Custom Gym environment for the emergency room simulation.
