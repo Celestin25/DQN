@@ -6,7 +6,7 @@ The goal of this project is to train a reinforcement learning agent to navigate 
 ## Prerequisites
 Python 3.8+
 ## Clone the repository:
-git clone 
+git clone https://github.com/Celestin25/DQN.git
 ## Create a virtual environment:
 
 -python -m venv myenv
