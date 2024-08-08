@@ -18,7 +18,7 @@ class EmergencyRoomEnv(gym.Env):
 
         # Initial positions
         self.agent_pos = [0, 0]  
-        self.medicine_cabinet_pos = [4, 4]  
+        self.emergency_room_pos = [4, 4]  
 
         
         self.num_doctors = 1
@@ -35,7 +35,7 @@ class EmergencyRoomEnv(gym.Env):
         positions = []
         while len(positions) < num:
             pos = [self.np_random.integers(0, self.grid_size), self.np_random.integers(0, self.grid_size)]
-            if pos != self.agent_pos and pos != self.medicine_cabinet_pos and pos not in positions:
+            if pos != self.agent_pos and pos != self.emergency_room_pos and pos not in positions:
                 positions.append(pos)
         return positions
 
@@ -50,7 +50,7 @@ class EmergencyRoomEnv(gym.Env):
     def _get_obs(self):
         obs = np.zeros((self.grid_size, self.grid_size), dtype=np.float32)
         obs[tuple(self.agent_pos)] = 1 
-        obs[tuple(self.medicine_cabinet_pos)] = 2  
+        obs[tuple(self.emergency_room_pos)] = 2  
         for pos in self.bed_positions:
             obs[tuple(pos)] = 3  
         obs[tuple(self.doctor_pos)] = 4  
@@ -69,9 +69,9 @@ class EmergencyRoomEnv(gym.Env):
        
 
         self.steps += 1
-        done = self.agent_pos == self.medicine_cabinet_pos or self.steps >= self.max_steps
+        done = self.agent_pos == self.emergency_room_pos or self.steps >= self.max_steps
 
-        if self.agent_pos == self.medicine_cabinet_pos:
+        if self.agent_pos == self.emergency_room_pos:
             reward = 10
         elif self.agent_pos == self.doctor_pos or self.agent_pos == self.nurse_pos:
             reward = -10
@@ -86,7 +86,7 @@ class EmergencyRoomEnv(gym.Env):
     def render(self, mode='human'):
         grid = np.full((self.grid_size, self.grid_size), '.', dtype=str)
         grid[tuple(self.agent_pos)] = '🙂'
-        grid[tuple(self.medicine_cabinet_pos)] = '💊'
+        grid[tuple(self.emergency_room_pos)] = '🏥'
         grid[tuple(self.doctor_pos)] = '👨‍⚕️'
         grid[tuple(self.nurse_pos)] = '👩‍⚕️'
         for pos in self.bed_positions:
