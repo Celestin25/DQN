@@ -23,6 +23,20 @@ model.compile(loss='mse', optimizer=Adam(learning_rate=0.001))
 
 # Build the model with the correct input shape
 model.build((None, 1) + env.observation_space.shape)
+episodes = 6
+while not done:
+        env.render()  
+        print(f"Episode {episode + 1}, Steps: {steps}, Total Reward: {total_reward:.2f}")
+        action = input("Enter action (1=Up, 2=Down, 3=Left, 4=Right, 5=Stay): ")
+
+        try:
+            action = int(action)
+            if action not in [1, 2, 3, 4, 5]:
+                print("Please enter integer between 1 and 5.")
+                continue
+        except ValueError:
+            print(" Please enter integer between 1 and 5.")
+            continue
 
 # Set up memory and policy
 memory = SequentialMemory(limit=10000, window_length=1)
