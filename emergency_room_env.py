@@ -87,8 +87,8 @@ class EmergencyRoomEnv(gym.Env):
         grid = np.full((self.grid_size, self.grid_size), '.', dtype=str)
         grid[tuple(self.agent_pos)] = '🙂'
         grid[tuple(self.emergency_room_pos)] = '🏥'
-        grid[tuple(self.doctor_pos)] = '👨‍⚕️'
-        grid[tuple(self.nurse_pos)] = '👩‍⚕️'
+        grid[tuple(self.doctor_pos)] = '🩺'
+        grid[tuple(self.nurse_pos)] = '🩺'
         for pos in self.bed_positions:
             grid[tuple(pos)] = '🛏'
         for row in grid:
